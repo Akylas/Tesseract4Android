@@ -41,32 +41,44 @@ add_library( # Sets the name of the library.
         leptonica
 
         # Sets the library as a shared library.
-        SHARED
+        STATIC
 
         # Provides a relative path to your source file(s).
         ${leptonica_src}
         ${leptonica_hdr}
-        box.cpp
-        boxa.cpp
-        jni.cpp
-        pix.cpp
-        pixa.cpp
-        readfile.cpp
-        utilities.cpp
-        writefile.cpp
-        common.h
+#        box.cpp
+#        boxa.cpp
+#        jni.cpp
+#        pix.cpp
+#        pixa.cpp
+#        readfile.cpp
+#        utilities.cpp
+#        writefile.cpp
+#        common.h
         )
 
 # Specifies a path to native header files.
 include_directories(${LEPT_PATH})
-include_directories(${JPEG_PATH})
+#include_directories(${JPEG_PATH})
 include_directories(${PNG_PATH})
 
 # Define preprocessor constants
 add_definitions(-DANDROID_BUILD)
-add_definitions(-DHAVE_LIBJPEG=1)
+#add_definitions(-DHAVE_LIBJPEG=1)
+#add_definitions(-DHAVE_LIBPNG=1)
+#add_definitions(-DHAVE_LIBZ=1)
+
+
+add_definitions(-DLIBWEBP_SUPPORT=OFF)
+add_definitions(-DOPENJPEG_SUPPORT=OFF)
+add_definitions(-DHAVE_LIBJPEG=0)
 add_definitions(-DHAVE_LIBPNG=1)
-add_definitions(-DHAVE_LIBZ=1)
+add_definitions(-DHAVE_LIBTIFF=0)
+add_definitions(-DHAVE_LIBWEBP=0)
+add_definitions(-DHAVE_LIBGIF=0)
+add_definitions(-DHAVE_LIBWEBP_ANIM=0)
+add_definitions(-DHAVE_LIBZ=0)
+add_definitions(-DHAVE_LIBJP2K=0)
 #TODO: Enable this when we use minSdkVersion 23 or higher
 #add_definitions(-DHAVE_FMEMOPEN=1)
 
@@ -81,9 +93,9 @@ target_link_libraries( # Specifies the target library.
         leptonica
 
         # Links the target library to the z library included in the NDK.
-        log
-        jnigraphics
-        z
-        jpeg
+#        log
+#        jnigraphics
+#        z
+#        jpeg
         pngx
         )

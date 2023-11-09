@@ -111,16 +111,16 @@ add_library( # Sets the name of the library.
         tesseract
 
         # Sets the library as a shared library.
-        SHARED
+        STATIC
 
         # Provides a relative path to your source file(s).
         ${tesseract_src}
         ${arch_files}
-        ${tesseract_hdr}
-        pageiterator.cpp
-        resultiterator.cpp
-        tessbaseapi.cpp
-        common.h
+#        ${tesseract_hdr}
+#        pageiterator.cpp
+#        resultiterator.cpp
+#        tessbaseapi.cpp
+#        common.h
         )
 
 # Specifies a path to native header files.
@@ -144,7 +144,11 @@ include_directories(${TESS_PATH}wordrec)
 # Define preprocessor constants
 add_definitions(-DHAVE_CONFIG_H)
 add_definitions(-DGRAPHICS_DISABLED)
+add_definitions(-DOPENMP_BUILD)
 add_definitions(-DFAST_FLOAT)
+add_definitions(-DDISABLE_TIFF)
+add_definitions(-DDISABLE_ARCHIVE)
+add_definitions(-DDISABLE_CURL)
 
 # Ignore some warnings during build
 target_compile_options(tesseract PRIVATE "-Wno-null-dereference")
@@ -159,8 +163,8 @@ target_link_libraries( # Specifies the target library.
         # Links the target library to the z library included in the NDK.
         atomic
         dl
-        log
+#        log
         ${LIBRARY_CPU_FEATURES}
-        jnigraphics
+#        jnigraphics
         leptonica
         )
