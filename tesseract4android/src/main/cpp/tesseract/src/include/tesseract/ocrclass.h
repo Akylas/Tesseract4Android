@@ -97,7 +97,7 @@ class ETEXT_DESC;
 
 using CANCEL_FUNC = bool (*)(void *, int);
 using PROGRESS_FUNC = bool (*)(int, int, int, int, int);
-using PROGRESS_FUNC2 = bool (*)(ETEXT_DESC *, int, int, int, int);
+using PROGRESS_FUNC2 = std::function<bool(ETEXT_DESC *, int, int, int, int)>;
 
 class ETEXT_DESC { // output header
 public:
